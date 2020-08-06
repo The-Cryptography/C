@@ -9,7 +9,7 @@ You can run and edit the cryptography algorithms or contribute to them using Git
 These implementations are for learning purposes. The implementations may be less efficient than the C standard library.
 
 ## Structure
-All cryptography algorithms are implemented with a proper format [directory](STRUCTURE.java)
+All cryptography algorithms are implemented with a proper format [directory](STRUCTURE.c)
 
 ## Algorithms
 See our [directory](DIRECTORY.md).
