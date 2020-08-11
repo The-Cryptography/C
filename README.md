@@ -1,4 +1,4 @@
-# The Cryptography Algorithms - C
+# Cryptography Algorithms - C
 
 You can run and edit the cryptography algorithms or contribute to them using Gitpod.io, a free online development environment, with a single click.
 
