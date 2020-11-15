@@ -27,14 +27,14 @@ int main()
    {
    case 1:
       for(i = 0; (i < 100 && str[i] != '\0'); i++)
-        str[i] = str[i] + key; //the key for encryption is 3 that is added to ASCII value
+        str[i] = str[i] + key; //the key for encryption is added to ASCII value
 
       printf("\nEncrypted string: %s\n", str);
       break;
 
    case 2:
       for(i = 0; (i < 100 && str[i] != '\0'); i++)
-        str[i] = str[i] - key; //the key for encryption is 3 that is subtracted to ASCII value
+        str[i] = str[i] - key; //the key for encryption  is subtracted to ASCII value
 
       printf("\nDecrypted string: %s\n", str);
       break;
