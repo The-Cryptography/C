@@ -1,34 +1,27 @@
 # This GitHub Action updates the DIRECTORY.md file (if needed) when doing a git push
 name: update_directory_md
-on: [create]
+on: [push]
 jobs:
   update_directory_md:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-python@master
+      - uses: actions/checkout@main
+      - uses: actions/setup-python@main
       - name: update_directory_md
         shell: python
         run: |
             import os
             from typing import Iterator
-
-            URL_BASE = "https://github.com/The-Cryptography/C/blob/master"
+            URL_BASE = "https://github.com/The-Cryptography/C/blob/main"
             g_output = []
-
-
             def good_filepaths(top_dir: str = ".") -> Iterator[str]:
                 for dirpath, dirnames, filenames in os.walk(top_dir):
                     dirnames[:] = [d for d in dirnames if d[0] not in "._"]
                     for filename in filenames:
-                        if os.path.splitext(filename)[1].lower() == ".java":
+                        if os.path.splitext(filename)[1].lower() == ".rb":
                             yield os.path.join(dirpath, filename).lstrip("./")
-
-
             def md_prefix(i):
                 return f"{i * '  '}*" if i else "\n##"
-
-
             def print_path(old_path: str, new_path: str) -> str:
                 global g_output
                 old_parts = old_path.split(os.sep)
@@ -37,8 +30,6 @@ jobs:
                         if new_part:
                             g_output.append(f"{md_prefix(i)} {new_part.replace('_', ' ')}")
                 return new_path
-
-
             def build_directory_md(top_dir: str = ".") -> str:
                 global g_output
                 old_path = ""
@@ -51,11 +42,8 @@ jobs:
                     filename = os.path.splitext(filename.replace("_", " "))[0]
                     g_output.append(f"{md_prefix(indent)} [{filename}]({url})")
                 return "\n".join(g_output)
-
-
             with open("DIRECTORY.md", "w") as out_file:
                 out_file.write(build_directory_md(".") + "\n")
-
       - name: Update DIRECTORY.md
         run: |
           cat DIRECTORY.md
